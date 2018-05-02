@@ -27,15 +27,17 @@ app.use('/public', express.static(process.cwd() + '/public'));
 let Schema = mongoose.Schema;
 
 let UrlSchema = new Schema({
-  url: {
+  long: {
     type: String,
     required: true
   },
-  age: Number,
-  favoriteFoods: [String]
+  short: Number
 });
 
 let Url = mongoose.model("Url", UrlSchema);
+
+let regex = [http
+
 
 app.post("/api/shorturl/:new", (req, res) => {
   
