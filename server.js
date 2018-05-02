@@ -24,19 +24,7 @@ app.use('/public', express.static(process.cwd() + '/public'));
 
 // ** my code ** //
 
-let Schema = mongoose.Schema;
-
-let UrlSchema = new Schema({
-  long: {
-    type: String,
-    required: true
-  },
-  short: Number
-});
-
-let Url = mongoose.model("Url", UrlSchema);
-
-let regex = [http
+let regex = /[https?://]?[www.]?w+/;
 
 
 app.post("/api/shorturl/:new", (req, res) => {
