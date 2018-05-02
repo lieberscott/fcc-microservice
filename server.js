@@ -20,6 +20,10 @@ app.use(cors());
 // you should mount the body-parser here
 let bodyParser = require('body-parser');
 
+app.use('/public', express.static(process.cwd() + '/public'));
+
+// ** my code ** //
+
 let Schema = mongoose.Schema;
 
 let UrlSchema = new Schema({
@@ -31,15 +35,16 @@ let UrlSchema = new Schema({
   favoriteFoods: [String]
 });
 
-let Person = mongoose.model("Person", PersonSchema);
-
-app.use('/public', express.static(process.cwd() + '/public'));
+let Url = mongoose.model("Url", UrlSchema);
 
 app.post("/api/shorturl/:new", (req, res) => {
   
   
   
 });
+
+
+// ** end my code ** //
 
 app.get('/', function(req, res){
   res.sendFile(process.cwd() + '/views/index.html');
