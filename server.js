@@ -47,8 +47,8 @@ let router = express.Router();
 // });
 
 
-app.post("/api/shorturl/:new", (req, res) => {
-  
+app.post("/api/shorturl/new", (req, res) => {
+  res.json({ greeting: "hello" });
   
   
 });

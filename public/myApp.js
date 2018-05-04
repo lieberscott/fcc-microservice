@@ -5,7 +5,7 @@ console.log("hello1");
 
 // let Schema = mongoose.Schema;
 
-$("#submit").on("click", () => {
+$("#urlinput").on("click", () => {
   console.log("hello");
 });
 
