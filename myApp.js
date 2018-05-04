@@ -13,6 +13,19 @@ let UrlSchema = new Schema({
 
 let Url = mongoose.model("Url", UrlSchema);
 
+let createShort = function(done) {
+  let short = new Url({
+  name: "Scott",
+  age: 34,
+  favoriteFoods: ["Pizza", "Burgers", "Fries", "Milkshakes"]
+});
+  
+  short.save((err, data) => {
+    if (err) { done(err) }
+    else { done(null, data) }
+  });
+};
+
 
 
 
