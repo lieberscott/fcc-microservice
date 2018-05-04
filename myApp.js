@@ -15,7 +15,7 @@ let Url = mongoose.model("Url", UrlSchema);
 
 let createShort = function(done) {
   let short = new Url({
-  name: "Scott",
+  long: "http://www",
   age: 34,
   favoriteFoods: ["Pizza", "Burgers", "Fries", "Milkshakes"]
 });
