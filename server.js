@@ -48,6 +48,8 @@ let router = express.Router();
 
 
 app.post("/api/shorturl/new", (req, res) => {
+  let url = req.body.url;
+  console.log(url);
   res.json({ greeting: "hello" });
   
   
