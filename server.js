@@ -2,7 +2,11 @@
 
 var express = require('express');
 var mongo = require('mongodb');
-var mongoose = require('mongoose');
+try{
+  var mongoose = require('mongoose');
+} catch (e) {
+  console.log(e);
+}
 var cors = require('cors');
 var app = express();
 
@@ -10,7 +14,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 /** this project needs a db !! **/ 
-// mongoose.connect(process.env.MONGOLAB_URI);
+mongoose.connect(process.env.MONGOLAB_URI);
 
 app.use(cors());
 
