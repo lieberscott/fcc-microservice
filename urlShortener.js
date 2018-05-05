@@ -26,10 +26,12 @@ let Url = mongoose.model("Url", UrlSchema);
 
 exports.createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
-  let count;
-  Url.find().exec(function (err, results) {
-  count = results.length
-});
+  let len = function(done) {
+    Url.count({}, (err, data) => {
+      if (err) { done(err) }
+      else { done(null, data) }
+    });  
+};
   console.log(len);
   let last = Url.findOne({ short: len }, "short", function(err, data) {
     if (err) {
