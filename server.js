@@ -2,11 +2,7 @@
 
 var express = require('express');
 var mongo = require('mongodb');
-try{
-  var mongoose = require('mongoose');
-} catch (e) {
-  console.log(e);
-}
+var mongoose = require('mongoose');
 var cors = require('cors');
 var app = express();
 
