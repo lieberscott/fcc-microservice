@@ -3,9 +3,7 @@
 var express = require('express');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-
 var cors = require('cors');
-
 var app = express();
 
 // Basic Configuration 
@@ -26,7 +24,7 @@ app.use('/public', express.static(process.cwd() + '/public'));
 // ** my code ** //
 
 let regex = /[https?://]?[www.]?w+/;
-let router = express.Router();
+// let router = express.Router();
 
 // let createPerson = require('./myApp.js').createAndSavePerson;
 // router.get('/create-and-save-person', function(req, res, next) {
