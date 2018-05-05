@@ -22,7 +22,7 @@ let createShort = function(url, done) {
   favoriteFoods: ["Pizza", "Burgers", "Fries", "Milkshakes"]
 });
   
-  let lastentry = Url.find({
+  let len = Url.count({}); 
   
   short.save((err, data) => {
     if (err) { done(err) }
