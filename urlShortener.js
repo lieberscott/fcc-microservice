@@ -15,12 +15,14 @@ let UrlSchema = new Schema({
 
 let Url = mongoose.model("Url", UrlSchema);
 
-let createShort = function(done) {
+let createShort = function(url, done) {
   let short = new Url({
   long: "http://www",
   age: 34,
   favoriteFoods: ["Pizza", "Burgers", "Fries", "Milkshakes"]
 });
+  
+  let lastentry = Url.find({
   
   short.save((err, data) => {
     if (err) { done(err) }
@@ -28,6 +30,17 @@ let createShort = function(done) {
   });
 };
 
+
+// let queryChain = function(done) {
+//   let foodToSearch = "burrito";
+  
+//   let burritoLovers = Person.find({favoriteFoods: foodToSearch});
+  
+//   burritoLovers.sort({ name: "asc" }).limit(2).select("-age").exec((err, data) => {
+//     if (err) { done(err) }
+//     else { done(null, data) }
+//   });
+// };
 
 
 
