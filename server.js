@@ -17,7 +17,7 @@ app.use(cors());
 /** this project needs to parse POST bodies **/
 // you should mount the body-parser here
 let bodyParser = require('body-parser');
-// app.use(bodyParser.urlencoded({ extended: true })); // middleware to capture the input field of a form
+app.use(bodyParser.urlencoded({ extended: true })); // middleware to capture the input field of a form
 
 app.use('/public', express.static(process.cwd() + '/public'));
 

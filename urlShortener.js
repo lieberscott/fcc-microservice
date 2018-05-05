@@ -1,13 +1,16 @@
+'use strict';
+
 console.log("hello1");
 
 let mongoose = require("mongoose");
 // mongoose.connect(process.env.MONGO_URI);
 
-
-let express = require('express');
-let app = express();
-let bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true })); // middleware to capture the input field of a form
+// let cors = require('cors');
+let dns = require('dns');
+// let express = require('express');
+// let app = express();
+// let bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: true })); // middleware to capture the input field of a form
 
 let Schema = mongoose.Schema;
 
@@ -21,7 +24,7 @@ let UrlSchema = new Schema({
 
 let Url = mongoose.model("Url", UrlSchema);
 
-let createShort = function(req, res) {
+exports.createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   res.json({hello: "hello"});
   // let len = Url.count({});
@@ -60,4 +63,4 @@ let createShort = function(req, res) {
 //----------- Do not edit below this line -----------//
 
 exports.UrlModel = Url;
-exports.createShort = createShort;
+// exports.createShort = createShort;
