@@ -47,13 +47,7 @@ let regex = /[https?://]?[www.]?w+/;
 // });
 
 
-app.post("/api/shorturl/new", (req, res) => {
-  // console.log(url);
-  
-  res.json({ greeting: "hello" });
-  
-  
-});
+app.post("/api/shorturl/new", urlShortener.createShort);
 
 
 // ** end my code ** //

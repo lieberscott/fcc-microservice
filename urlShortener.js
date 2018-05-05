@@ -23,22 +23,23 @@ let Url = mongoose.model("Url", UrlSchema);
 
 let createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
-  let len = Url.count({});
-  let last = Url.findOne({ short: len }, "short", function(err, data) {
-    if (err) { console.log(err) }
-    else { console.log(data) }
-  });
-  console.log(last);
+  res.json({hello: "hello"});
+  // let len = Url.count({});
+  // let last = Url.findOne({ short: len }, "short", function(err, data) {
+  //   if (err) { console.log(err) }
+  //   else { console.log(data) }
+  // });
+  // console.log(last);
 
-  let short = new Url({
-  long: url,
-  short: last + 1
-});
+//   let short = new Url({
+//   long: url,
+//   short: last + 1
+// });
   
-  short.save((err, data) => {
-    if (err) { console.log(err) }
-    else { console.log(data) }
-  });
+//   short.save((err, data) => {
+//     if (err) { console.log(err) }
+//     else { console.log(data) }
+//   });
 };
 
 
