@@ -3,6 +3,12 @@ console.log("hello1");
 let mongoose = require("mongoose");
 // mongoose.connect(process.env.MONGO_URI);
 
+
+let express = require('express');
+let app = express();
+let bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true })); // middleware to capture the input field of a form
+
 let Schema = mongoose.Schema;
 
 let UrlSchema = new Schema({
@@ -15,14 +21,17 @@ let UrlSchema = new Schema({
 
 let Url = mongoose.model("Url", UrlSchema);
 
-let createShort = function(url, done) {
+let createShort = function(req, res) {
+  let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
+
   let short = new Url({
   long: "http://www",
   age: 34,
   favoriteFoods: ["Pizza", "Burgers", "Fries", "Milkshakes"]
 });
   
-  let len = Url.count({}); 
+  let len = Url.count({});
+  console.log(len);
   
   short.save((err, data) => {
     if (err) { done(err) }
