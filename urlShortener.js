@@ -24,14 +24,21 @@ let UrlSchema = new Schema({
 
 let Url = mongoose.model("Url", UrlSchema);
 
+let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
+
 exports.createShort = function(req, res) {
-  let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   let getLength = (done) => {
+    let len;
     Url.count({}, (err, data) => {
-      console.log(data);
+      if (err) { done(err) }
+      else {
+        len = data;
+        done(null, data);
+      }
     });
   }
-  // console.log(len);
+}
+  console.log(len);
   let last = Url.findOne({ short: 0 }, "short", function(err, data) {
     if (err) {
       let short = new Url({
