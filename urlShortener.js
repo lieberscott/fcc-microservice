@@ -28,10 +28,21 @@ exports.createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   let len = Url.count({});
   let last = Url.findOne({ short: len }, "short", function(err, data) {
-    if (err) { console.log(err) }
-    else { console.log(data) }
+    if (err) {
+      let short = new Url({
+        long: url,
+        short: 1
+      });
+      
+      short.save((err, data) => {
+        if (err) { console.log("saving error") }
+        else { console.log("saving success") }
+      });
+      console.log("first entry");
+    }
+    else { console.log("no error") }
   });
-  console.log(last);
+  // console.log(last);
 
 //   let short = new Url({
 //   long: url,
@@ -43,7 +54,7 @@ exports.createShort = function(req, res) {
 //     else { console.log(data) }
 //   });
   
-  res.json({hello: last});
+  res.json({hello: url});
 };
 
 
