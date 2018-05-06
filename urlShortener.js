@@ -20,7 +20,7 @@ let createShort = function(req, res) {
   let newlink = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
   
-  dns.lookup(newlink, (err) => {
+  dns.lookup("www.espn.com", (err) => {
     if (err || regex.test(newlink) == false) { // validate URL format
       console.log(regex.test(newlink));
       console.log(err);
