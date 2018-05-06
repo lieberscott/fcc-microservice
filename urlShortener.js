@@ -23,31 +23,15 @@ let createShort = function(req, res) {
     newlink = newlink.split(regex)[1]; // gets rid of http(s):// if it exists
   }
   
-  dns.lookup(newlink, (err) => {
-    if (err) { // validate URL format
-      // console.log(err);
-      res.json({
-        error: "Invalid URL",
-        comment: "Must be preceded by http:// or https://, or invalid url"
-      });
+  dns.lookup(newlink, (err) => { // make sure URL is good
+    if (err) {
+      res.json({ error: "Invalid URL" });
     }
     
     else {
       checkRepeat(newlink);
     }
   });
-  
-//   if (regex.test(newlink)) { // minimal validating that it conforms to URL syntax
-//     checkRepeat(newlink);
-//   }
-
-//   else {
-//     res.json({
-//       error: "Invalid URL",
-//       comment: "Must be preceded by http:// or https://"
-//     });
-//   }
-  
   
   async function checkRepeat(url) { // check if url is already in database
     let check = await Url.findOne({long: url});
@@ -65,9 +49,7 @@ let createShort = function(req, res) {
   };
   
   async function addUrl(url) {
-    let len;
-    len = await Url.findOne().sort({ short: -1 }).limit(1).exec() // gets most recent entry using short field
-    console.log("len: " + len.short);
+    let len = await Url.findOne().sort({ short: -1 }).limit(1).exec() // gets most recent entry using short field
     let newshort;    
     
     if (len == null) { // first entry in database
@@ -101,8 +83,6 @@ let createShort = function(req, res) {
   }
 
 };
-
-
 
 
 //----------- Do not edit below this line -----------//
