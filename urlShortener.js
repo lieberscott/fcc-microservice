@@ -29,7 +29,7 @@ let createShort = function(req, res) {
     console.log("len: " + len);
     let newshort;    
     
-    if (len == null) {
+    if (len == null) { // first entry in database
       newshort = new Url({
         long: url,
         short: 1
