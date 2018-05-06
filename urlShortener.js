@@ -19,6 +19,8 @@ let UrlSchema = new Schema({
 
 let Url = mongoose.model("Url", UrlSchema);
 
+let regex = /^[https?://]?[www.]?w+/;
+
 let createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   

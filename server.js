@@ -24,7 +24,7 @@ app.use('/public', express.static(process.cwd() + '/public'));
 // ** my code ** //
 
 var urlShortener = require('./urlShortener.js');
-let regex = /[https?://]?[www.]?w+/;
+// let regex = /[https?://]?[www.]?w+/;
 // let router = express.Router();
 
 // let createPerson = require('./myApp.js').createAndSavePerson;
