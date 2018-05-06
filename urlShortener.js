@@ -22,27 +22,29 @@ let Url = mongoose.model("Url", UrlSchema);
 let regex = /^[https?://]?[www.]?w+/;
 
 let createShort = function(req, res) {
-  let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
+  let newlink = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
   async function checkRepeat(url) { // check if url is already in there
     let check = await Url.findOne({long: url});
+    
+    
 
     if (check) {
-      console.log("second-secondtest");
       console.log(check);
+      res.json({
+        long: check.long,
+        short: check.short
+      });
     }
     else {
-      console.log("second-firsttest");
-      addUrl();
+      addUrl(url);
     }
   };
   
-  
-  console.log("first");
-  checkRepeat(url);
+  checkRepeat(newlink);
   
   
-  async function addUrl() {
+  async function addUrl(url) {
     let len;
     len = await Url.findOne().sort({ short: -1 }).limit(1).exec() // gets most recent entry using short field
     console.log("len: " + len.short);
@@ -58,11 +60,15 @@ let createShort = function(req, res) {
         if (err) { console.log(err) }
         else { console.log(data) }
       });
+      
+      res.json({
+        long: url,
+        short: 
+      });
+      
     }
     
     else {
-      
-      console.log("third-firsttest");
       
       newshort = new Url({
         long: url,
@@ -76,9 +82,7 @@ let createShort = function(req, res) {
     }
   }
   
-  // addUrl();
-  console.log("end of file");
-  res.json({hello: url});
+  res.json({hello: newlink});
 };
 
 
