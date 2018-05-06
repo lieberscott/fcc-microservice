@@ -19,16 +19,32 @@ let regex = /https?:\/\/(www\.)?\w+\.\w+/gm;
 let createShort = function(req, res) {
   let newlink = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
-  if (regex.test(newlink)) { // minimal validating that it conforms to URL syntax
-    checkRepeat(newlink);
-  }
+  
+  dns.lookup(newlink, (err) => {
+    if (err || regex.test(newlink) == false) { // validate URL format
+      console.log(regex.test(newlink));
+      console.log(err);
+      res.json({
+        error: "Invalid URL",
+        comment: "Must be preceded by http:// or https://, or invalid url"
+      });
+    }
+    
+    else {
+      checkRepeat(newlink);
+    }
+  });
+  
+//   if (regex.test(newlink)) { // minimal validating that it conforms to URL syntax
+//     checkRepeat(newlink);
+//   }
 
-  else {
-    res.json({
-      error: "Invalid URL",
-      comment: "Must be preceded by http:// or https://"
-    });
-  }
+//   else {
+//     res.json({
+//       error: "Invalid URL",
+//       comment: "Must be preceded by http:// or https://"
+//     });
+//   }
   
   
   async function checkRepeat(url) { // check if url is already in database
