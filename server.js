@@ -24,27 +24,6 @@ app.use('/public', express.static(process.cwd() + '/public'));
 // ** my code ** //
 
 var urlShortener = require('./urlShortener.js');
-// let regex = /[https?://]?[www.]?w+/;
-// let router = express.Router();
-
-// let createPerson = require('./myApp.js').createAndSavePerson;
-// router.get('/create-and-save-person', function(req, res, next) {
-//   // in case of incorrect function use wait timeout then respond
-//   var t = setTimeout(() => { next({message: 'timeout'}) }, timeout);
-//   createPerson(function(err, data) {
-//     clearTimeout(t);
-//     if(err) { return (next(err)); }
-//     if(!data) {
-//       console.log('Missing `done()` argument');
-//       return next({message: 'Missing callback argument'});
-//     }
-//      Person.findById(data._id, function(err, pers) {
-//        if(err) { return (next(err)); }
-//        res.json(pers);
-//        pers.remove();
-//      });
-//   });
-// });
 
 
 app.post("/api/shorturl/new", urlShortener.createShort);
