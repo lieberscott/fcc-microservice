@@ -21,24 +21,32 @@ let Url = mongoose.model("Url", UrlSchema);
 
 let createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
-  let len = Url.count({});
-  len.then(num => len = num);
+  async function dbOperations() {
+  let len;
+  // Ideally, you must also include error catching.
+  // I am not, for now.
+  len = await Url.count({}).exec();
   console.log(len);
-  let last = Url.findOne({ short: 0 }, "short", function(err, data) {
-    if (err) {
-      let short = new Url({
-        long: url,
-        short: 1
-      });
+}
+dbOperations();
+//   let len = Url.count({});
+//   len.then(num => len = num);
+//   console.log(len);
+//   let last = Url.findOne({ short: 0 }, "short", function(err, data) {
+//     if (err) {
+//       let short = new Url({
+//         long: url,
+//         short: 1
+//       });
       
-      short.save((err, data) => {
-        if (err) { console.log("saving error") }
-        else { console.log("saving success") }
-      });
-      console.log("first entry");
-    }
-    else { console.log("no error") }
-  });
+//       short.save((err, data) => {
+//         if (err) { console.log("saving error") }
+//         else { console.log("saving success") }
+//       });
+//       console.log("first entry");
+//     }
+//     else { console.log("no error") }
+//   });
 
   
   res.json({hello: url});
