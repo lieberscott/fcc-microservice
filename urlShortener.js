@@ -22,22 +22,26 @@ let Url = mongoose.model("Url", UrlSchema);
 let createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
-  async function checkRepeat(url) {
-    let check = await Url.findOne({long: url}).then(
+//   async function checkRepeat(url) {
+//     let check = await Url.findOne({long: url}).then(() => {
 
-      if (check) {
-        res.json(check);
-      }
-      else {
-        console.log(check);
-      }
-    )};
+//       if (check) {
+//         res.json({hello: check});
+//       }
+//       else {
+//         console.log(check);
+//         res.json({hello: "hello"});
+//       }
+//     })
+//   };
+  
+//   checkRepeat(url);
   
   
   async function addUrl() {
     let len;
-    len = await Url.findOne().sort({ id: -1 }).exec() // gets most recent entry using id field (can use any field)
-    console.log("len: " + len);
+    len = await Url.findOne().sort({ short: -1 }).limit(1).exec() // gets most recent entry using short field
+    console.log("len: " + len.short);
     let newshort;    
     
     if (len == null) { // first entry in database
@@ -66,7 +70,7 @@ let createShort = function(req, res) {
     }
   }
   
-  // addUrl();
+  addUrl();
   
   res.json({hello: url});
 };
