@@ -13,13 +13,13 @@ let UrlSchema = new Schema({
 });
 
 let Url = mongoose.model("Url", UrlSchema);
-let regex = /^https?:\/\//gm;
+let regex = /^https?:\/\//m;
 
 let createShort = function(req, res) {
   let newlink = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
   if (regex.test(newlink)) {
-    newlink = newlink.split(regex)[1]; // gets rid of http(s):// if it exists
+    newlink = newlink.split(regex)[1]; // gets rid of http(s):// in entry if it exists so dns.lookup will work
   }
   
   dns.lookup(newlink, (err) => { // make sure URL is good
