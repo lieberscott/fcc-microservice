@@ -24,18 +24,16 @@ let regex = /^[https?://]?[www.]?w+/;
 let createShort = function(req, res) {
   let newlink = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
-  async function checkRepeat(url) { // check if url is already in there
+  async function checkRepeat(url) { // check if url is already in database
     let check = await Url.findOne({long: url});
-    
-    
 
-    if (check) {
-      console.log(check);
+    if (check) { // already exists, so return info
       res.json({
         long: check.long,
         short: check.short
       });
     }
+    
     else {
       addUrl(url);
     }
@@ -61,11 +59,7 @@ let createShort = function(req, res) {
         else { console.log(data) }
       });
       
-      res.json({
-        long: url,
-        short: 
-      });
-      
+      res.json(newshort);
     }
     
     else {
@@ -79,10 +73,12 @@ let createShort = function(req, res) {
         if (err) { console.log(err) }
         else { console.log(data) }
       });
+      
+      res.json(newshort);
     }
   }
   
-  res.json({hello: newlink});
+  // res.json({hello: newlink});
 };
 
 
