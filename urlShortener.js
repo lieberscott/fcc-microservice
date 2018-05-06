@@ -23,16 +23,15 @@ let createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
   async function checkRepeat(url) {
-    let check = await Url.findOne({long: url});
-    console.log(check);
-    
-    if (check) {
-      res.json(check);
-    }
-    else {
-      console.log(check);
-    }
-  };
+    let check = await Url.findOne({long: url}).then(
+
+      if (check) {
+        res.json(check);
+      }
+      else {
+        console.log(check);
+      }
+    )};
   
   
   async function addUrl() {
@@ -69,7 +68,7 @@ let createShort = function(req, res) {
   
   // addUrl();
   
-  // res.json({hello: url});
+  res.json({hello: url});
 };
 
 
