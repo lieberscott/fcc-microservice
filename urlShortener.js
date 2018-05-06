@@ -26,6 +26,7 @@ let createShort = function(req, res) {
     len = await Url.count({}).exec();
     console.log("len: " + len);
     let newshort;
+    let short;
     
     
     if (len == 0) {
@@ -41,6 +42,20 @@ let createShort = function(req, res) {
     }
     
     else {
+      
+      let findLast = function(done) {
+        let shortToSearch = len;
+  
+        short = Url.find({short: shortToSearch});
+  
+        Url.exec((err, data) => {
+        if (err) { done(err) }
+        else { done(null, data) }
+      });
+    };
+      
+      console.log(short);
+      
       newshort = new Url({
         long: url,
         short: len + 1
