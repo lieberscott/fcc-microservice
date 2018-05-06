@@ -1,13 +1,8 @@
 'use strict';
 
-console.log("hello1");
-
 let mongoose = require("mongoose");
-// mongoose.connect(process.env.MONGO_URI);
-
-let dns = require('dns');
-
 let Schema = mongoose.Schema;
+let dns = require('dns');
 
 let UrlSchema = new Schema({
   long: {
@@ -19,10 +14,22 @@ let UrlSchema = new Schema({
 
 let Url = mongoose.model("Url", UrlSchema);
 
-let regex = /^[https?://]?[www.]?w+/;
+let regex = /https?:\/\/(www\.)?\w+\.\w+/gm;
 
 let createShort = function(req, res) {
   let newlink = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
+  
+  if (regex.test(newlink)) { // minimal validating that it conforms to URL syntax
+    checkRepeat(newlink);
+  }
+
+  else {
+    res.json({
+      error: "Invalid URL",
+      comment: "Must be preceded by http:// or https://"
+    });
+  }
+  
   
   async function checkRepeat(url) { // check if url is already in database
     let check = await Url.findOne({long: url});
@@ -34,13 +41,10 @@ let createShort = function(req, res) {
       });
     }
     
-    else {
+    else { // doesn't exist, so trigger addUrl function
       addUrl(url);
     }
   };
-  
-  checkRepeat(newlink);
-  
   
   async function addUrl(url) {
     let len;
@@ -77,8 +81,7 @@ let createShort = function(req, res) {
       res.json(newshort);
     }
   }
-  
-  // res.json({hello: newlink});
+
 };
 
 
