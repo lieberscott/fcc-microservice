@@ -55,61 +55,6 @@ let createShort = function(req, res) {
     }
   }
   
-  
-  
-  
-  
-  
-  
-  
-  
-//   async function dbOperations() {
-//     let len;
-//     len = await Url.count({}).exec();
-//     console.log("len: " + len);
-//     let newshort;
-//     let short;
-    
-    
-//     if (len == 0) {
-//       newshort = new Url({
-//         long: url,
-//         short: 1
-//       });
-      
-//       newshort.save((err, data) => {
-//         if (err) { console.log(err) }
-//         else { console.log(data) }
-//       });
-//     }
-    
-//     else {
-      
-//       let findLast = function(done) {
-//         let shortToSearch = len;
-  
-//         short = Url.find({short: shortToSearch});
-  
-//         Url.exec((err, data) => {
-//         if (err) { done(err) }
-//         else { done(null, data) }
-//       });
-//     };
-      
-//       console.log(short);
-      
-//       newshort = new Url({
-//         long: url,
-//         short: len + 1
-//       });
-      
-//       newshort.save((err, data) => {
-//         if (err) { console.log(err) }
-//         else { console.log(data) }
-//       });
-//     }
-//   }
-  
   dbOperations();
   
   res.json({hello: url});
