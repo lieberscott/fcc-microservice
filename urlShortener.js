@@ -14,16 +14,18 @@ let UrlSchema = new Schema({
 
 let Url = mongoose.model("Url", UrlSchema);
 
-let regex = /https?:\/\/(www\.)?\w+\.\w+/gm;
+let regex = /^https?:\/\//gm;
 
 let createShort = function(req, res) {
   let newlink = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
+  if (regex.test(newlink)) {
+    newlink = newlink.split(regex)[1]; // gets rid of http(s):// if it exists
+  }
   
-  dns.lookup("www.espn.com", (err) => {
-    if (err || regex.test(newlink) == false) { // validate URL format
-      console.log(regex.test(newlink));
-      console.log(err);
+  dns.lookup(newlink, (err) => {
+    if (err) { // validate URL format
+      // console.log(err);
       res.json({
         error: "Invalid URL",
         comment: "Must be preceded by http:// or https://, or invalid url"
