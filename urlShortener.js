@@ -22,20 +22,22 @@ let Url = mongoose.model("Url", UrlSchema);
 let createShort = function(req, res) {
   let url = req.body.url; // captures input field of form; "url" here matches <input name="url"> in index.html file
   
-//   async function checkRepeat(url) {
-//     let check = await Url.findOne({long: url}).then(() => {
+  async function checkRepeat(url) { // check if url is already in there
+    let check = await Url.findOne({long: url});
 
-//       if (check) {
-//         res.json({hello: check});
-//       }
-//       else {
-//         console.log(check);
-//         res.json({hello: "hello"});
-//       }
-//     })
-//   };
+    if (check) {
+      console.log("second-secondtest");
+      console.log(check);
+    }
+    else {
+      console.log("second-firsttest");
+      addUrl();
+    }
+  };
   
-//   checkRepeat(url);
+  
+  console.log("first");
+  checkRepeat(url);
   
   
   async function addUrl() {
@@ -58,6 +60,8 @@ let createShort = function(req, res) {
     
     else {
       
+      console.log("third-firsttest");
+      
       newshort = new Url({
         long: url,
         short: len.short + 1
@@ -70,8 +74,8 @@ let createShort = function(req, res) {
     }
   }
   
-  addUrl();
-  
+  // addUrl();
+  console.log("end of file");
   res.json({hello: url});
 };
 
