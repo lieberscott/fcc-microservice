@@ -13,7 +13,6 @@ let UrlSchema = new Schema({
 });
 
 let Url = mongoose.model("Url", UrlSchema);
-
 let regex = /^https?:\/\//gm;
 
 let createShort = function(req, res) {
@@ -57,29 +56,21 @@ let createShort = function(req, res) {
         long: url,
         short: 1
       });
-      
-      newshort.save((err, data) => {
-        if (err) { console.log(err) }
-        else { console.log(data) }
-      });
-      
-      res.json(newshort);
     }
     
     else {
-      
       newshort = new Url({
         long: url,
         short: len.short + 1
       });
-      
-      newshort.save((err, data) => {
-        if (err) { console.log(err) }
-        else { console.log(data) }
-      });
-      
-      res.json(newshort);
     }
+      
+    newshort.save((err, data) => {
+      if (err) { console.log(err) }
+      else { console.log(data) }
+    });
+      
+    res.json(newshort);
   }
 
 };
