@@ -1,13 +1,13 @@
 'use strict';
 
-let urlShortener = require ("./urlShortener.js");
+let urlShortener = require("./urlShortener.js");
 
 let express = require('express');
 
 async function redirect(req, res) {
   let site = await Url.findOne({ short: req.short }).limit(1).exec(); // uses short to find entry
   if (site) {
-    express.redirect("http://" + site.long);
+    res.redirect("http://" + site.long);
   }
   
   else {
