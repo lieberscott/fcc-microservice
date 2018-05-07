@@ -27,7 +27,7 @@ let urlShortener = require('./urlShortener.js');
 
 app.post("/api/shorturl/new", urlShortener.createShort);
 
-// app.get("/api/shorturl/:new", redirectAction.redirect);
+app.get("/api/shorturl/:short", redirectAction.redirect);
 
 
 // ** end my code ** //

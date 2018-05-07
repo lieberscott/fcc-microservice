@@ -4,8 +4,16 @@ let urlShortener = require ("./urlShortener.js");
 
 let express = require('express');
 
-async function redirect (req, res) => {
-  let site = await Url.findOne().sort({ short: req.name }).limit(1).exec(); // gets most recent entry using short field
+async function redirect(req, res) {
+  let site = await Url.findOne({ short: req.short }).limit(1).exec(); // uses short to find entry
+  if (site) {
+    express.redirect("http://" + site.long);
+  }
+  
+  else {
+    res.json({ Error: "No redirect exists for that path" });
+  }
+
 }
 
 
