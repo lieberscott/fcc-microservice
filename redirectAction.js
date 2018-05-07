@@ -11,7 +11,7 @@ async function redirect(req, res) {
   }
   
   else {
-    res.json({ Error: "No redirect exists for that path" });
+    res.json({ Error: "No entry matches that path" });
   }
 
 }
