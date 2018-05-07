@@ -1,9 +1,11 @@
+'use strict';
+
 let urlShortener = require ("./urlShortener.js");
 
 let express = require('express');
 
-let redirect = (req, res) => {
-  
+async function redirect (req, res) => {
+  let site = await Url.findOne().sort({ short: req.name }).limit(1).exec(); // gets most recent entry using short field
 }
 
 
