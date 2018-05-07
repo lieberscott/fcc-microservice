@@ -23,7 +23,8 @@ app.use('/public', express.static(process.cwd() + '/public'));
 
 // ** my code ** //
 
-let urlShortener = require('./urlShortener.js');
+let urlShortener = require("./urlShortener.js");
+let redirectAction = require("./redirectAction.js");
 
 app.post("/api/shorturl/new", urlShortener.createShort);
 

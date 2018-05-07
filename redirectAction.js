@@ -1,6 +1,6 @@
 'use strict';
 
-let urlShortener = require("./urlShortener.js");
+let Url = require("./urlShortener.js").UrlModel;
 
 let express = require('express');
 

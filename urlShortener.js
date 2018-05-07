@@ -78,5 +78,5 @@ let createShort = function(req, res) {
 
 //----------- Do not edit below this line -----------//
 
-exports.UrlModel = Url;
+exports.UrlModel = Url; // UrlModel will be how it is imported in other documents such as redirectAction.js
 exports.createShort = createShort;
