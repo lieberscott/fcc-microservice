@@ -49,7 +49,7 @@ let createShort = function(req, res) {
   
   async function addUrl(url) {
     let len = await Url.findOne().sort({ short: -1 }).limit(1).exec() // gets most recent entry using short field
-    let newshort;    
+    let newshort;
     
     if (len == null) { // first entry in database
       newshort = new Url({
