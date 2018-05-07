@@ -1,13 +1,13 @@
 'use strict';
 
-var express = require('express');
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-var cors = require('cors');
-var app = express();
+let express = require('express');
+let mongo = require('mongodb');
+let mongoose = require('mongoose');
+let cors = require('cors');
+let app = express();
 
 // Basic Configuration 
-var port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 
 /** this project needs a db !! **/ 
 mongoose.connect(process.env.MONGOLAB_URI);
@@ -23,10 +23,11 @@ app.use('/public', express.static(process.cwd() + '/public'));
 
 // ** my code ** //
 
-var urlShortener = require('./urlShortener.js');
-
+let urlShortener = require('./urlShortener.js');
 
 app.post("/api/shorturl/new", urlShortener.createShort);
+
+// app.get("/api/shorturl/:new", redirectAction.redirect);
 
 
 // ** end my code ** //
