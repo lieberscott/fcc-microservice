@@ -11,11 +11,11 @@ See project: https://fcc-urlshorten.glitch.me/
 
 #### Creation Example:
 
-POST [project_url]/api/shorturl/new - body (urlencoded) :  url=https://www.google.com
+POST https://fcc-urlshorten.glitch.me/api/shorturl/new - body (urlencoded) :  url=https://www.google.com
 
 #### Usage:
 
-[this_project_url]/api/shorturl/3
+https://fcc-urlshorten.glitch.me/api/shorturl/1
 
 #### Will redirect to:
 
