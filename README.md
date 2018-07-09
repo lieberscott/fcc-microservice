@@ -17,6 +17,8 @@ POST https://fcc-urlshorten.glitch.me/api/shorturl/new - body (urlencoded) :  ur
 
 https://fcc-urlshorten.glitch.me/api/shorturl/1
 
+Uses MongoDB, Node, and Express
+
 #### Will redirect to:
 
 http://forum.freecodecamp.com
